@@ -23,7 +23,7 @@ pipeline {
     }
     // This is build section
     stages{
-        stage('Read Version')
+        stage('Read Version') {
         steps{
             script {
                 def packageJSON = readJSON file: 'package.json'
@@ -31,7 +31,7 @@ pipeline {
                 echo "app version: ${appVersion}"
             }
         }
-        
+    }  
         stage('Build'){
             steps {
                 script {
