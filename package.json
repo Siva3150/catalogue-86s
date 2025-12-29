@@ -1,6 +1,6 @@
 {
   "name": "catalogue",
-  "version": "1.0.0",
+  "version": "1.1.0",
   "description": "product catalogue REST API",
   "main": "server.js",
   "scripts": {
@@ -15,8 +15,7 @@
     "pino": "^5.10.8",
     "express-pino-logger": "^4.0.0",
     "pino-pretty": "^2.5.0",
-    "@instana/collector": "^1.132.2"
-    // "redis": "^2.8.0"  --- intentinally added for to check dependabot checking one defect dependency purpose
-    
+    "@instana/collector": "^1.132.2",
+    "redis": "^3.1.1"
   }
 }
