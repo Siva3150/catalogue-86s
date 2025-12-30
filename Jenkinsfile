@@ -148,25 +148,41 @@ pipeline {
                 }
             }
         }
-        stage('Build'){
+
+         stage('Trivy Scan'){
             steps {
-                script {
-                    """
-                    echo "Building"
-                    echo $COURSE
-                    sleep 10
-                    env
-
-                // echo "Hello ${params.PERSON}"
-                // echo "Biography: ${params.BIOGRAPHY}"
-                // echo "Toggle: ${params.DEPLOY}"
-                // echo "Choice: ${params.CHOICE}"
-                // echo "Password: ${params.PASSWORD}"
-
+                script{
+                    sh """
+                        trivy image \
+                        --scanners vuln \
+                        --severity HIGH,CRITICAL,MEDIUM \
+                        --pkg-types os \
+                        --exit-code 1 \
+                        --format table \
+                        ${ACC_ID}.dkr.ecr.us-east-1.amazonaws.com/${PROJECT}/${COMPONENT}:${appVersion}
                     """
                 }
             }
         }
+        // stage('Build'){
+        //     steps {
+        //         script {
+        //             """
+        //             echo "Building"
+        //             echo $COURSE
+        //             sleep 10
+        //             env
+
+        //         // echo "Hello ${params.PERSON}"
+        //         // echo "Biography: ${params.BIOGRAPHY}"
+        //         // echo "Toggle: ${params.DEPLOY}"
+        //         // echo "Choice: ${params.CHOICE}"
+        //         // echo "Password: ${params.PASSWORD}"
+
+        //             """
+        //         }
+        //     }
+        // }
         stage('Test'){
             steps{
                 script{
