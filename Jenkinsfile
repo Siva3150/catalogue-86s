@@ -15,6 +15,6 @@ if ( ! env.BRANCH_NAME.equalsIgnoreCase('main') ){
 
 else{
  
- echo "Please follow the CR process"
+ echo "Please follow the PROD process"
 
 }
